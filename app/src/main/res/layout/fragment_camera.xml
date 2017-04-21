@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="cf.dashika.pipetteworld.View.Fragment.CameraFragment">
+
+    <cf.dashika.pipetteworld.View.CameraSurfaceView
+        android:id="@+id/camera_surfaceview"
+        android:layout_width="0dip"
+        android:layout_height="0dip" />
+
+    <LinearLayout
+        android:id="@+id/layoutHEX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imgColorHEX"
+            android:layout_width="60pt"
+            android:layout_height="15pt"
+            android:contentDescription="@string/imagehex" />
+
+        <TextView
+            android:id="@+id/tvColorHEX"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnAddHEX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_add_hex"
+            app:fabSize="mini"
+            app:backgroundTint="@color/colorPrimary" />
+    </LinearLayout>
+
+</RelativeLayout>
