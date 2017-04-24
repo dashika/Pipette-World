@@ -127,7 +127,7 @@ public class Libraries implements Parcelable {
 
     public String getLastIdLib() {
         for (Library library : libraries) {
-            if (library.getId().length() > 0) return library.getId();
+            if (library.getId() != null) return library.getId();
         }
         return null;
     }

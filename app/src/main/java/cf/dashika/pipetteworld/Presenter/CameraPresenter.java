@@ -160,7 +160,9 @@ public class CameraPresenter extends BasePresenter {
 
             //add new element
             try {
-                addElements(libraries.getLastIdLib(), element, elements1 -> {
+                String lastId = libraries.getLastIdLib();
+                if(lastId == null) return;//Toast.makeText(context, "You must sync your account or create first library on Adob")
+                addElements(lastId, element, elements1 -> {
                     Toast.makeText(context, "Palette send to Adobe account successful", Toast.LENGTH_LONG).show();
                 });
             } catch (JSONException e) {
