@@ -1,0 +1,98 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+apply from: '../api.gradle'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "cf.dashika.pipetteworld"
+        minSdkVersion 16
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+
+        buildConfigField "String", "BASE_URL", "\"$BASE_URL\""
+        buildConfigField "String", "CSDK_CLIENT_ID", "\"$CSDK_CLIENT_ID\""
+        buildConfigField "String", "CSDK_CLIENT_SECRET", "\"$CSDK_CLIENT_SECRET\""
+        buildConfigField "String", "CSDK_REDIRECT_URI", "\"$CSDK_REDIRECT_URI\""
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    /* Exclude duplicate licenses */
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/rxjava.properties'
+        pickFirst 'AndroidManifest.xml'
+    }
+    productFlavors {
+        free {
+            applicationId "cf.dashika.pipetteworld"
+            versionName "1.0"
+        }
+        pro {
+            applicationId "cf.dashika.pipetteworld.pro"
+            versionName "1.0-pro"
+        }
+    }
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:design:25.3.1'
+
+    /* ButterKnife */
+    compile('com.jakewharton:butterknife:8.5.1') {
+        exclude module: 'support-compat'
+    }
+    apt 'com.jakewharton:butterknife-compiler:8.5.1'
+
+    /* Dagger 2 */
+    compile 'com.google.dagger:dagger:2.0'
+    apt 'com.google.dagger:dagger-compiler:2.0.2'
+
+    /* RxJava */
+    compile 'io.reactivex:rxandroid:1.0.1'
+    compile 'io.reactivex:rxjava:1.0.14'
+    compile 'com.hwangjr.rxbus:rxbus:1.0.5'
+    compile 'com.amitshekhar.android:rx2-android-networking:1.0.0'
+
+    /* Paperparcel */
+    compile 'nz.bradcampbell:paperparcel:2.0.1'
+    annotationProcessor 'nz.bradcampbell:paperparcel-compiler:2.0.1'
+
+    /* Adobe auth */
+    compile 'com.adobe.creativesdk.foundation:auth:0.9.1251'
+
+    /* DATA BASE */
+    compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
+
+    /* CRASH REPORT FIREBASE */
+    compile 'com.google.firebase:firebase-crash:10.0.1'
+
+    compile 'com.android.support:recyclerview-v7:25.3.1'
+}
