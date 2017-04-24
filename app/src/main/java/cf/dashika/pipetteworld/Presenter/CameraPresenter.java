@@ -16,21 +16,17 @@ import com.adobe.creativesdk.foundation.internal.auth.AdobeAuthManager;
 
 import org.json.JSONException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import cf.dashika.pipetteworld.ApplicationPipetteWorld;
 import cf.dashika.pipetteworld.DisplayUtil;
-import cf.dashika.pipetteworld.Model.Adobe.ColorthemeData;
 import cf.dashika.pipetteworld.Model.Adobe.Element;
 import cf.dashika.pipetteworld.Model.Adobe.Elements;
 import cf.dashika.pipetteworld.Model.Adobe.Libraries;
 import cf.dashika.pipetteworld.Model.Adobe.Library;
-import cf.dashika.pipetteworld.Model.Adobe.Representation;
 import cf.dashika.pipetteworld.Model.Adobe.Swatch;
-import cf.dashika.pipetteworld.Model.Adobe.Value;
 import cf.dashika.pipetteworld.Model.CameraModel;
 import cf.dashika.pipetteworld.Model.DB.ElementDB;
 import cf.dashika.pipetteworld.Model.DB.ValueDB;
@@ -171,7 +167,7 @@ public class CameraPresenter extends BasePresenter {
                 e.printStackTrace();
             }
         } else {
-            migrateToLocal();
+            migrateToLocal(size - 1);
             elementDB.save();
             if (size == 5) {
                 elementDB = new ElementDB();
@@ -179,20 +175,18 @@ public class CameraPresenter extends BasePresenter {
         }
     }
 
-    private void migrateToLocal() {
+    private void migrateToLocal(int lastColor) {
         Elements elements = currentLibrary.getElements().get(currentLibrary.getElements().size() - 1);
         Element element = elements.getElements().get(elements.getElements().size() - 1);
 
         elementDB.setName(element.getName());
         List<List<Swatch>> colorthemeData = element.getRepresentations().get(element.getRepresentations().size() - 1).getColorthemeData().getSwatches();
-        List<ValueDB> values = new ArrayList<>();
-        for (Swatch swatch : colorthemeData.get(0)) {
-            elementDB.save();
-            ValueDB valueDB = new ValueDB(elementDB).migrateFromValue(swatch.getValue());
-            values.add(valueDB);
-            valueDB.save();
-        }
-        elementDB.setValue(values);
+        //  for (Swatch swatch : colorthemeData.get(0)) {
+        elementDB.save();
+        ValueDB valueDB = new ValueDB(elementDB).migrateFromValue(colorthemeData.get(lastColor).get(0).getValue());
+        valueDB.save();
+        //  }
+
     }
 
 

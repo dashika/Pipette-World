@@ -31,8 +31,10 @@ public class ModelModule {
     }
 
     private void migrateToLibrary(Libraries libraries) {
-        List<ElementDB> elementDBS = ElementDB.getAllElement();
-        if(elementDBS.size() == 0) return;
+        ElementDB elementDB_ = new ElementDB();
+        List<ElementDB> elementDBS = elementDB_.getAllElement();
+
+        if (elementDBS.size() == 0) return;
         Library library = new Library();
         library.setName("saved" + new Random().nextInt());
         library.setState("my");
@@ -47,7 +49,9 @@ public class ModelModule {
             Representation representation = new Representation();
             ColorthemeData colorthemeData = new ColorthemeData();
             List<List<Swatch>> lists = colorthemeData.getSwatches();
-            for (ValueDB valueDB : elementDB.getValue()) {
+            List<ValueDB> valueDBS = elementDB.getValues();
+            if (valueDBS.size() == 0) continue;
+            for (ValueDB valueDB : valueDBS) {
                 Swatch swatch = new Swatch();
                 Value value = new Value();
                 value.setR(valueDB.getR());

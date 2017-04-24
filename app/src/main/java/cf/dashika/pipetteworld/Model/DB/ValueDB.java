@@ -10,6 +10,10 @@ import cf.dashika.pipetteworld.Model.Adobe.Value;
 @Table(name = "ValueDB", id = "_id")
 public class ValueDB extends Model {
 
+    public ValueDB() {
+        super();
+    }
+
     public ValueDB(ElementDB element) {
         super();
         this.element = element;
@@ -23,15 +27,39 @@ public class ValueDB extends Model {
         this.element = element;
     }
 
-    @Column(name = "fElement", onDelete = Column.ForeignKeyAction.CASCADE)
+    @Column(name = "fElementDB", onDelete = Column.ForeignKeyAction.CASCADE)
     private ElementDB element;
 
+    public int getR() {
+        return r;
+    }
+
+    public void setR(int r) {
+        this.r = r;
+    }
+
+    public int getB() {
+        return b;
+    }
+
+    public void setB(int b) {
+        this.b = b;
+    }
+
+    public int getG() {
+        return g;
+    }
+
+    public void setG(int g) {
+        this.g = g;
+    }
+
     @Column(name = "r")
-    private Integer r;
+    private int r;
     @Column(name = "b")
-    private Integer b;
+    private int b;
     @Column(name = "g")
-    private Integer g;
+    private int g;
 
     public ValueDB migrateFromValue(Value value) {
         this.r = value.getR();
@@ -41,28 +69,6 @@ public class ValueDB extends Model {
     }
 
 
-    public Integer getR() {
-        return r;
-    }
 
-    public void setR(Integer r) {
-        this.r = r;
-    }
-
-    public Integer getB() {
-        return b;
-    }
-
-    public void setB(Integer b) {
-        this.b = b;
-    }
-
-    public Integer getG() {
-        return g;
-    }
-
-    public void setG(Integer g) {
-        this.g = g;
-    }
 
 }

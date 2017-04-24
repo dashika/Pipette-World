@@ -117,6 +117,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                     login = true;
                     updateMenuTitles();
                     finish();
+                    startActivity(new Intent(this,CameraActivity.class));
             }
         }
     }

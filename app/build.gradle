@@ -41,6 +41,16 @@ android {
         exclude 'META-INF/rxjava.properties'
         pickFirst 'AndroidManifest.xml'
     }
+    productFlavors {
+        free {
+            applicationId "cf.dashika.pipetteworld"
+            versionName "1.0"
+        }
+        pro {
+            applicationId "cf.dashika.pipetteworld.pro"
+            versionName "1.0-pro"
+        }
+    }
 
 }
 
@@ -81,6 +91,8 @@ dependencies {
     /* DATA BASE */
     compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
 
+    /* CRASH REPORT FIREBASE */
+    compile 'com.google.firebase:firebase-crash:10.0.1'
 
     compile 'com.android.support:recyclerview-v7:25.3.1'
 }

@@ -47,6 +47,7 @@ public class LibraryColorPresenter extends BasePresenter {
             getLibraries(elements -> {
                 start = false;
                 mValues.addAll(elements.getElements());
+               // libraryRecyclerViewAdapter.animateTo(mValues);
                 libraryRecyclerViewAdapter.notifyDataSetChanged();
             });
 
@@ -97,6 +98,7 @@ public class LibraryColorPresenter extends BasePresenter {
                     @Override
                     public void onComplete() {
                         //saveinstance
+                        Toast.makeText(context, "Successful load palette from Adobe", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

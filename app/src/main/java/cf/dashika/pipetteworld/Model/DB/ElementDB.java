@@ -18,8 +18,6 @@ public class ElementDB extends Model {
     @Column(name = "name")
     private String name;
 
-    private List<ValueDB> value;
-
     public String getName() {
         return name;
     }
@@ -28,26 +26,13 @@ public class ElementDB extends Model {
         this.name = name;
     }
 
-    public List<ValueDB> getValue() {
-        return value == null ? value = new ArrayList<>() : value;
-    }
-
-    public void setValue(List<ValueDB> values) {
-        this.value = values;
-    }
-
-    public static List<ElementDB> getAllElement() {
+    public  List<ElementDB> getAllElement() {
         return new Select().all().from(ElementDB.class)
                 .execute();
     }
 
-    public static List<ValueDB> getAll() {
-        return new Select().all().from(ValueDB.class)
-                .execute();
-    }
-
-    public List<ValueDB> getMany() {
-        return getMany(ValueDB.class, "fElement");
+    public List<ValueDB> getValues() {
+        return getMany(ValueDB.class, "fElementDB");
     }
 
 }
