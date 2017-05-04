@@ -3,9 +3,9 @@
 The application allows you to determine in real time the color code of any object that has got into the camera lens. You can log in using your Adobe account and sync your palettes from within the application.
 ## DEMO
 ---
-Image |Image
+Video |Image
 -------------|----------------- 
- ![](https://github.com/dashika/Pipette-World/blob/master/img/img1.png) |  ![](https://github.com/dashika/Pipette-World/blob/master/img/img2.png)
+[![](https://github.com/dashika/Pipette-World/blob/master/img/img1.png)](https://youtu.be/U_CL1lSrQ_g) |  ![](https://github.com/dashika/Pipette-World/blob/master/img/img2.png)
 
 #### Used libraries
 ---
